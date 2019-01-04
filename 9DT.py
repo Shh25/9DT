@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[13]:
+
+
 # Initilize variables
 number_of_players = 2
 m = 4
@@ -30,6 +33,10 @@ game_matrix = [[0 for _ in range(m)] for _ in range(n)]
 game_board = game_matrix.copy()
 game_board.append([x for x in range(1, n + 1)])
 
+
+# In[2]:
+
+
 # Display 4x4 Game Board in current state
 def display_board():
     for index, row in enumerate(game_board):
@@ -39,7 +46,10 @@ def display_board():
         for col in game_board[index]:
             print(col, end='', flush=True)
         print('|')
-    print()
+
+
+# In[3]:
+
 
 # Check if a sequence exists
 def sequence(player_number):
@@ -64,6 +74,10 @@ def sequence(player_number):
                     return True
                 else:
                     return False
+
+
+# In[4]:
+
 
 # Play a move on the game board
 def make_move(player_input, player_number):
@@ -92,10 +106,17 @@ def make_move(player_input, player_number):
             return 'ERROR'
 
 
+# In[5]:
+
+
 # get input history from player
 def get_input_history():
     for inp in input_history:
         print(inp)
+
+
+# In[15]:
+
 
 print('------------- 9DT --------------')
 print('Type one of the following options:')
@@ -111,12 +132,11 @@ while(not player_input == 'EXIT'):
         display_board()
     elif player_input == 'RESTART':
         restart_game()
-    elif 'PUT' in player_input:
+    elif player_input.startswith('PUT'):
         player_input_col = int(player_input.split(' ')[1])
         if not game_response == 'WIN' and not game_response == 'DRAW':
             game_response = make_move(player_input_col, player_number)
             print(game_response)
-            print()
             if not game_response == 'ERROR':
                 if player_number is 1:
                     player_number = 2
